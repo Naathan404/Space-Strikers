@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private PlayerController playerController;
     private bool isGamePaused = false;
+    private bool isGameOver = false;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
         // Pause and unpause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
             GameManager.instance.PauseGame(true);
+        if (playerController.GetCurrentHealth() <= 0) isGameOver = true;
     }
 
     public void PauseGame(bool isPaused)
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     public float GetWorldSpeed() => worldSpeed * playerController.GetBoost();
     public bool IsPaused() => isGamePaused;
+    public bool IsGameOVer() => isGameOver;
     public Vector3 GetPlayerPosition() => playerController.transform.position;
     
 }

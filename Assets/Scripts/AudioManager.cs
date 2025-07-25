@@ -57,6 +57,6 @@ public class AudioManager : MonoBehaviour
 
     public void StopSound()
     {
-        sound.Stop();
+        normalSound.Stop();
     }
 }

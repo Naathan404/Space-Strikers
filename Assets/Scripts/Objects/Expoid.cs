@@ -28,7 +28,7 @@ public class Expoid : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > Random.Range(1.5f, 3f))
         {
-            dir = new Vector2(Random.Range(-2f, 0f), Random.Range(-0.6f, 0.6f));
+            dir = new Vector2(Random.Range(-2f, -0.2f), Random.Range(-0.6f, 0.6f));
             timer = 0f;
         }
     }

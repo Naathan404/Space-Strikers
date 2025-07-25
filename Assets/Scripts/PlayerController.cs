@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float energyRegeneration;
     [SerializeField] private float energyUsage;
     [SerializeField] private float energyRequiredForBoost = 10f;
-    [Header("Attack Variables")]
-    [SerializeField] private float fireCooldown;
-    private float fireTimer;
 
     private bool isBoosting = false;
     private float baseBoostPower = 1f;
@@ -42,7 +39,6 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
         boost = baseBoostPower;
-        fireTimer = fireCooldown;
 
         // Display UI
         UIController.instance.DisplayEnergyBar();
@@ -61,14 +57,6 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             DeactivateBoost();
-        }
-
-        // Attack
-        fireTimer -= Time.deltaTime;
-        if (fireTimer <= 0f)
-        {
-            Gun.instance.Fire(transform.position);
-            fireTimer = fireCooldown;
         }
 
         // temp check lose condition
