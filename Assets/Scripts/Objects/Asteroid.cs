@@ -18,6 +18,7 @@ public class Asteroid : MonoBehaviour
     private PlayerController playerController;
     private float rotateDirection;
     private Vector2 dir;
+    float scaleFactor;
 
     private void Awake()
     {
@@ -41,7 +42,7 @@ public class Asteroid : MonoBehaviour
         rb2D.linearVelocity = dir;
 
         spriteRenderer.color = Color.white;
-        float scaleFactor = Random.Range(0.85f, 1.25f);
+        scaleFactor = Random.Range(0.85f, 1.25f);
         transform.localScale = new Vector2(scaleFactor, scaleFactor);
     }
 
@@ -97,6 +98,7 @@ public class Asteroid : MonoBehaviour
     {
         AudioManager.instance.PlaySound(AudioManager.instance._explode1);
         EffectManager.instance.RunExplosion02Effect(transform.position);
+        playerController.AddExp(2);
         gameObject.SetActive(false);
     }
 }

@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        AudioManager.instance.PlaySound(AudioManager.instance._buttonClick);
         sceneCanvas.SetActive(false);
         loadingScene.SetActive(true);
         StartCoroutine(LoadAsync(sceneName));
@@ -30,6 +31,7 @@ public class SceneController : MonoBehaviour
 
     public void QuitGame()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance._buttonClick);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif

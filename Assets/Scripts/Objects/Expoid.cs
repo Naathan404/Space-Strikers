@@ -8,6 +8,7 @@ public class Expoid : MonoBehaviour
     private Vector2 dir;
     private Rigidbody2D rb;
     private PlayerController playerController;
+    float scaleFactor;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class Expoid : MonoBehaviour
 
     private void OnEnable()
     {
-        float scaleFactor = Random.Range(1f, 1.2f);
+        scaleFactor = Random.Range(1f, 1.2f);
         transform.localScale = new Vector2(scaleFactor, scaleFactor);
     }
 
@@ -43,9 +44,10 @@ public class Expoid : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             AudioManager.instance.PlaySound(AudioManager.instance._hit4);    /// temporary for testing
-            EffectManager.instance.RunExplosion02Effect(transform.position);
+            EffectManager.instance.RunExplosion03Effect(transform.position);
             gameObject.SetActive(false);
             collision.gameObject.SetActive(false);
+            playerController.AddExp(1);
         }
     }
 
@@ -55,8 +57,9 @@ public class Expoid : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             AudioManager.instance.PlaySound(AudioManager.instance._hit3);
-            EffectManager.instance.RunExplosion02Effect(transform.position);
+            EffectManager.instance.RunExplosion03Effect(transform.position);
             gameObject.SetActive(false);
+            playerController.AddExp(1);
         }
    }
 }

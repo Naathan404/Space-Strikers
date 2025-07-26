@@ -14,9 +14,16 @@ public class UIController : MonoBehaviour
     [Header("Health Bar")]
     [SerializeField] private Slider healthBar;
     [SerializeField] private TMP_Text healthText;
+    [Header("Exp Bar")]
+    [SerializeField] private Slider expBar;
+    [SerializeField] private TMP_Text expText;
 
     [Header("Pause Panel")]
     [SerializeField] private GameObject pauseGamePanel;
+    [Header("Game Over Panel")]
+    [SerializeField] private GameObject gameOverPanel;
+    [Header("LevelUpPanel")]
+    [SerializeField] private GameObject levelUpPanel;
 
     private PlayerController playerController;
     public static UIController instance;
@@ -50,8 +57,30 @@ public class UIController : MonoBehaviour
         healthBar.value = (float)playerController.GetCurrentHealth() / playerController.GetMaxHealth();
     }
 
+    public void DisplayEXPBar()
+    {
+        expText.text = playerController.GetCurrentExp().ToString("00") + "/" + playerController.GetMaxExp().ToString("00");
+        expBar.value = (float)playerController.GetCurrentExp() / playerController.GetMaxExp();
+    }
+
     public void ActivatePausePanel(bool active)
     {
         pauseGamePanel.SetActive(active);
+    }
+
+    public void ActivateGameOverPanel(bool active)
+    {
+        gameOverPanel.SetActive(active);
+    }
+
+    public void ActivatePowerUpPanel()
+    {
+        levelUpPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void DeactivatePowerUpPanel()
+    {
+        levelUpPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

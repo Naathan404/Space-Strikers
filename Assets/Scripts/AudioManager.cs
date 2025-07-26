@@ -29,17 +29,19 @@ public class AudioManager : MonoBehaviour
     public AudioClip _playerAttack;
     public AudioClip _playerHit;
     public AudioClip _playerExplode;
-    public AudioClip boostEngine;
+    public AudioClip _boostEngine;
+    public AudioClip _levelUp;
     [Header("UI Sound")]
     public AudioClip _uiPause;
     public AudioClip _uiUnpause;
+    public AudioClip _buttonClick;
     [Header("Object Sound")]
     public AudioClip _explode1;
     public AudioClip _hitBullet;
     public AudioClip _hit3;
     public AudioClip _hit4;
 
-    private void Start()
+    private void OnEnable()
     {
         music.clip = background;
         music.Play();
@@ -58,5 +60,10 @@ public class AudioManager : MonoBehaviour
     public void StopSound()
     {
         normalSound.Stop();
+    }
+
+    public void StopMusic()
+    {
+        music.Stop();
     }
 }

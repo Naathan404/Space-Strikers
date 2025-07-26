@@ -1,25 +1,88 @@
 fileFormatVersion: 2
-guid: fad12cf785508734687a8476b4634fdf
+guid: eb3407888b8415848917aa388903499f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 987648193118723531
-    second: locustmorph_0
+      213: 4773600122041589604
+    second: Sprites_0
   - first:
-      213: -1182288027662524906
-    second: locustmorph_1
+      213: -4789670105439411607
+    second: Sprites_1
   - first:
-      213: 746690809680363692
-    second: locustmorph_2
+      213: 7061801754131594114
+    second: Sprites_2
   - first:
-      213: 216214826535000004
-    second: locustmorph_3
+      213: -7377819553374844296
+    second: Sprites_3
   - first:
-      213: -7989817001677814027
-    second: locustmorph_4
+      213: -638443171332479689
+    second: Sprites_4
   - first:
-      213: -7408264423918629294
-    second: locustmorph_5
+      213: -1428572451713796752
+    second: Sprites_5
+  - first:
+      213: 7411919347176863388
+    second: Sprites_6
+  - first:
+      213: -8796573629370075563
+    second: Sprites_7
+  - first:
+      213: -8705658455517951556
+    second: Sprites_8
+  - first:
+      213: 8279819551763339774
+    second: Sprites_9
+  - first:
+      213: 7010537895803775351
+    second: Sprites_10
+  - first:
+      213: 7792300033668422012
+    second: Sprites_11
+  - first:
+      213: 7791742886103884341
+    second: Sprites_12
+  - first:
+      213: 394738354570393740
+    second: Sprites_13
+  - first:
+      213: -9046095728324299325
+    second: Sprites_14
+  - first:
+      213: 7960299501354929935
+    second: Sprites_15
+  - first:
+      213: 1579531326687846966
+    second: Sprites_16
+  - first:
+      213: 7188930153578278880
+    second: Sprites_17
+  - first:
+      213: -263089634459758618
+    second: Sprites_18
+  - first:
+      213: 3455609540856221501
+    second: Sprites_19
+  - first:
+      213: -8877105270654902643
+    second: Sprites_20
+  - first:
+      213: -1059341289296395630
+    second: Sprites_21
+  - first:
+      213: 8097644648361003729
+    second: Sprites_22
+  - first:
+      213: -5129541754429850415
+    second: Sprites_23
+  - first:
+      213: 1571997993387287584
+    second: Sprites_24
+  - first:
+      213: -975749167277906879
+    second: Sprites_25
+  - first:
+      213: 6638901707931224523
+    second: Sprites_26
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +115,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +129,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +153,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -141,133 +204,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: locustmorph_0
+      name: Sprites_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 120
-        width: 102
-        height: 120
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bcdd5e18cc4d4bd00800000000000000
-      internalID: 987648193118723531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: locustmorph_1
-      rect:
-        serializedVersion: 2
-        x: 14
+        x: 0
         y: 0
-        width: 92
-        height: 121
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 61e5af88d4ba79fe0800000000000000
-      internalID: -1182288027662524906
+      spriteID: 1aad31f8c09454a4fa69ee4b32bd6d9c
+      internalID: -537698503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: locustmorph_2
+      name: Sprites_1
       rect:
         serializedVersion: 2
-        x: 129
+        x: 48
         y: 0
-        width: 102
-        height: 240
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ca00c04d557cc5a00800000000000000
-      internalID: 746690809680363692
+      spriteID: 7e5787927e89cac449a0f745fc704a05
+      internalID: -1351827305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: locustmorph_3
+      name: Sprites_2
       rect:
         serializedVersion: 2
-        x: 241
-        y: 119
-        width: 119
-        height: 121
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c79aca3d36200300800000000000000
-      internalID: 216214826535000004
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: locustmorph_4
-      rect:
-        serializedVersion: 2
-        x: 248
+        x: 96
         y: 0
-        width: 105
-        height: 120
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5f60e92d4c77e1190800000000000000
-      internalID: -7989817001677814027
+      spriteID: a7023786d279d3d41b94b99c36994114
+      internalID: 343860057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: locustmorph_5
+      name: Sprites_3
       rect:
         serializedVersion: 2
-        x: 367
+        x: 144
         y: 0
-        width: 105
-        height: 240
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 25e8a22d1ce803990800000000000000
-      internalID: -7408264423918629294
+      spriteID: dc2514abdff5cdb458a315b19b748793
+      internalID: 1312880308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cdc7973697778f418ce958fb58208bb
+      internalID: -127688862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb2dd7ddbff39be4cbe2d9a62c9b35cf
+      internalID: -1842708861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abce725c80958db45afd21f926446f33
+      internalID: 539235145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprites_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39c7a0ad58edf04469db142d3a325255
+      internalID: -56673009
       vertices: []
       indices: 
       edges: []
@@ -276,7 +383,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2e97fd1217185a24c9aa1e966d963edb
     internalID: 0
     vertices: []
     indices: 
@@ -285,7 +392,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sprites_0: -537698503
+      Sprites_1: -1351827305
+      Sprites_2: 343860057
+      Sprites_3: 1312880308
+      Sprites_4: -127688862
+      Sprites_5: -1842708861
+      Sprites_6: 539235145
+      Sprites_7: -56673009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

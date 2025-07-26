@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FlashEffect : MonoBehaviour
 {
-    private Color flashColor = new Color(5f, 5f, 5f);
+    private Color flashColor = new Color(1f, 0.5f, 0.5f);
 
     public static FlashEffect instance;
 

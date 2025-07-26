@@ -1,5 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.iOS;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,20 +27,46 @@ public class GameManager : MonoBehaviour
         // Pause and unpause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
             GameManager.instance.PauseGame(true);
-        if (playerController.GetCurrentHealth() <= 0) isGameOver = true;
+    }
+
+    public void SetGameOver()
+    {
+        isGameOver = true;
+        StartCoroutine(GameOver());
+    }
+
+    IEnumerator GameOver()
+    {
+        float timer = 0f;
+        while (timer < 1.5f)
+        {
+            timer += Time.deltaTime;
+            Time.timeScale = Mathf.Lerp(1f, 0.5f, timer / 1.5f);
+            yield return null;
+        }
+        Time.timeScale = 0f;
+        UIController.instance.ActivateGameOverPanel(isGameOver);
+        AudioManager.instance.StopMusic();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("LevelTest");
+        AudioManager.instance.PlaySound(AudioManager.instance._buttonClick);
+        Time.timeScale = 1f;
     }
 
     public void PauseGame(bool isPaused)
     {
         if (isPaused)
         {
-            AudioManager.instance.PlaySound(AudioManager.instance._uiPause);
+            AudioManager.instance.PlayAdjustedSound(AudioManager.instance._uiPause);
             Time.timeScale = 0f;
             isGamePaused = true;
         }
         else
         {
-            AudioManager.instance.PlaySound(AudioManager.instance._uiUnpause);
+            AudioManager.instance.PlayAdjustedSound(AudioManager.instance._uiUnpause);
             Time.timeScale = 1f;
             isGamePaused = false;
             playerController.DeactivateBoost();
@@ -50,5 +78,4 @@ public class GameManager : MonoBehaviour
     public bool IsPaused() => isGamePaused;
     public bool IsGameOVer() => isGameOver;
     public Vector3 GetPlayerPosition() => playerController.transform.position;
-    
 }

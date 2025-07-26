@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
@@ -8,6 +9,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float activeBoostPower;
+    [Header("Level Manager")]
+    [SerializeField] private int currentLevel = 0;
+    [SerializeField] private int maxLevel;
+    [SerializeField] private int currentExp;
+    [SerializeField] private List<int> expToNextLevels;
     [Header("Health Settings")]
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth;
@@ -28,13 +34,22 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    private void Start()
+    private void Awake()
     {
         // Get components
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        // Generate level system
+        for (int i = expToNextLevels.Count; i < maxLevel; i++)
+        {
+            expToNextLevels.Add(Mathf.CeilToInt(expToNextLevels[expToNextLevels.Count - 1] * 1.2f + 7));
+        }
+    }
+
+    private void Start()
+    {
         // Set start value
         currentHealth = maxHealth;
         currentEnergy = maxEnergy;
@@ -43,11 +58,12 @@ public class PlayerController : MonoBehaviour
         // Display UI
         UIController.instance.DisplayEnergyBar();
         UIController.instance.DisplayHealthBar();
+        UIController.instance.DisplayEXPBar();
     }
 
     private void Update()
     {
-        if (GameManager.instance.IsPaused()) return;
+        if (GameManager.instance.IsPaused() || GameManager.instance.IsGameOVer()) return;
         dirX = Input.GetAxisRaw("Horizontal");
         dirY = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyDown(KeyCode.Space) && currentEnergy > energyRequiredForBoost)
@@ -60,13 +76,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // temp check lose condition
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
 
         // Animation
-            HandleAnimation();
+        HandleAnimation();
     }
 
     private void FixedUpdate()
@@ -75,13 +91,14 @@ public class PlayerController : MonoBehaviour
         HandleEnergy();
         UIController.instance.DisplayEnergyBar();
         UIController.instance.DisplayHealthBar();
+        UIController.instance.DisplayEXPBar();
     }
 
     private void HandleAnimation()
     {
         animator.SetFloat("dirX", dirX);
         animator.SetFloat("dirY", dirY);
-        if(dirX != 0 || dirY != 0)
+        if (dirX != 0 || dirY != 0)
             animator.SetBool("isMoving", true);
         else
             animator.SetBool("isMoving", false);
@@ -93,7 +110,7 @@ public class PlayerController : MonoBehaviour
         boost = activeBoostPower;
         isBoosting = true;
 
-        AudioManager.instance.PlaySound(AudioManager.instance.boostEngine);
+        AudioManager.instance.PlaySound(AudioManager.instance._boostEngine);
 
         // Play engine boosting particles
         ParticleManager.instance.PlayParticle(ParticleManager.instance.mainEngineBoostParticle);
@@ -129,6 +146,7 @@ public class PlayerController : MonoBehaviour
             if (currentEnergy < maxEnergy)
                 currentEnergy += energyRegeneration;
         }
+        currentEnergy = Mathf.Clamp(currentEnergy, 0, maxEnergy);
     }
 
     public void TakeDamage(int amount)
@@ -142,17 +160,44 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         EffectManager.instance.RunExplosion01Effect(transform.position);
-        AudioManager.instance.PlaySound(AudioManager.instance._playerExplode);
+        AudioManager.instance.PlayAdjustedSound(AudioManager.instance._playerExplode);
         DeactivateBoost();
+        GameManager.instance.SetGameOver();
         gameObject.SetActive(false);
+    }
+
+    public void AddExp(int amount)
+    {
+        currentExp += amount;
+        if (currentExp >= expToNextLevels[currentLevel])
+        {
+            LevelUp();
+        }
+        UIController.instance.DisplayEXPBar();
+    }
+
+    private void LevelUp()
+    {
+        currentExp -= expToNextLevels[currentLevel];
+        currentLevel++;
+        AudioManager.instance.PlaySound(AudioManager.instance._levelUp);
+        if(!GameManager.instance.IsGameOVer())
+            UIController.instance.ActivatePowerUpPanel();
     }
 
     public bool IsBoosting() => isBoosting;
     public float GetBoost() => boost;
     public float GetCurrentEnergy() => currentEnergy;
     public float GetMaxEnergy() => maxEnergy;
+    public void SetMaxEnergy(float val) { maxEnergy = val; }
     public float GetEnergyRequiredForBoost() => energyRequiredForBoost;
+    public float GetEnergyRegeneration() => energyRegeneration;
+    public void SetEnergyRegeneration(float val) { energyRegeneration = val; }
 
     public int GetCurrentHealth() => currentHealth;
     public int GetMaxHealth() => maxHealth;
+    public void SetCurrentHealth(int value) { currentHealth = value; }
+
+    public int GetCurrentExp() => currentExp;
+    public int GetMaxExp() => expToNextLevels[currentLevel];
 }

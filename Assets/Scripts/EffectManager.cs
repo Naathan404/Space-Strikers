@@ -6,6 +6,7 @@ public class EffectManager : MonoBehaviour
 
     [SerializeField] private ObjectPooler explosion01EffectPooler;
     [SerializeField] private ObjectPooler explosion02EffectPooler;
+    [SerializeField] private ObjectPooler explosion03EffectPooler;
 
     private void Awake()
     {
@@ -24,6 +25,12 @@ public class EffectManager : MonoBehaviour
     public void RunExplosion02Effect(Vector3 position)
     {
         GameObject effect = explosion02EffectPooler.GetPooledObject();
+        SetDefaultState(effect, position);
+    }
+
+        public void RunExplosion03Effect(Vector3 position)
+    {
+        GameObject effect = explosion03EffectPooler.GetPooledObject();
         SetDefaultState(effect, position);
     }
 

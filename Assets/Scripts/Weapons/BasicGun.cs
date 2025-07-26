@@ -19,7 +19,6 @@ public class BasicGun : BaseGun
     {
         if (GameManager.instance.IsGameOVer())
         {
-            Debug.Log("Game over");
             return;
         }
         timer += Time.deltaTime;
@@ -33,6 +32,7 @@ public class BasicGun : BaseGun
     public void Fire(Vector2 pos)
     {
         AudioManager.instance.PlayAdjustedSound(AudioManager.instance._playerAttack);
+        float range = baseRange * amountOfBullet;
         for (int i = 0; i < amountOfBullet; i++)
         {
             GameObject bullet = GameObject.Find("BasicBullet").GetComponent<ObjectPooler>().GetPooledObject();
@@ -48,6 +48,7 @@ public class BasicGun : BaseGun
                 offsetY = 0f;
             }
             bullet.transform.position = pos + new Vector2(0, spacing * i - offsetY);
+            bullet.transform.localScale = new Vector3(bulletSize, bulletSize);
             bullet.SetActive(true);
         }
     }

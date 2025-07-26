@@ -1,4 +1,4 @@
-repository "Space Strikers/Space Strikers@18968280591013@cloud"
+repository "Space Strikers/Space Strikers 2025-07-26_10-07-15@18968280591013@cloud"
   path "/"
     br "/main"
     co "/main"
