@@ -6,7 +6,7 @@ public class UIController : MonoBehaviour
 {
     [Header("Energy Bar")]
     [SerializeField] private Slider energyBar;
-    [SerializeField] private Image fillArea;
+    [SerializeField] private Image energyFillArea;
     [SerializeField] private TMP_Text energyText;
     [SerializeField] private Color energyUsableColor;
     [SerializeField] private Color energyUnusableColor;
@@ -17,6 +17,11 @@ public class UIController : MonoBehaviour
     [Header("Exp Bar")]
     [SerializeField] private Slider expBar;
     [SerializeField] private TMP_Text expText;
+    [SerializeField] private Image expFillArea;
+    [SerializeField] private Color lowExpColor;
+    [SerializeField] private Color medExpColor;
+    [SerializeField] private Color highExpColor;
+    [SerializeField] private Color veryHighExpColor;
 
     [Header("Pause Panel")]
     [SerializeField] private GameObject pauseGamePanel;
@@ -46,9 +51,9 @@ public class UIController : MonoBehaviour
         energyBar.value = playerController.GetCurrentEnergy() / playerController.GetMaxEnergy();
 
         if (playerController.GetCurrentEnergy() < playerController.GetEnergyRequiredForBoost())
-            fillArea.color = energyUnusableColor;
+            energyFillArea.color = energyUnusableColor;
         else
-            fillArea.color = energyUsableColor;
+            energyFillArea.color = energyUsableColor;
     }
 
     public void DisplayHealthBar()
@@ -59,8 +64,17 @@ public class UIController : MonoBehaviour
 
     public void DisplayEXPBar()
     {
-        expText.text = playerController.GetCurrentExp().ToString("00") + "/" + playerController.GetMaxExp().ToString("00");
-        expBar.value = (float)playerController.GetCurrentExp() / playerController.GetMaxExp();
+        float curExpVal = (float)playerController.GetCurrentExp() / playerController.GetMaxExp();
+        expText.text = "Level " + playerController.GetCurrentLevel().ToString("00");
+        if (0f <= curExpVal && curExpVal < 0.25f)
+            expFillArea.color = lowExpColor;
+        if (0.25f <= curExpVal && curExpVal < 0.5f)
+            expFillArea.color = medExpColor;
+        if (0.5f <= curExpVal && curExpVal < 0.75f)
+            expFillArea.color = highExpColor;
+        if (0.75f <= curExpVal && curExpVal <= 1f)
+            expFillArea.color = veryHighExpColor;
+        expBar.value = curExpVal;
     }
 
     public void ActivatePausePanel(bool active)

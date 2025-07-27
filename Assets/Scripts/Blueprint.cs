@@ -46,6 +46,12 @@ public class Blueprint : MonoBehaviour
         HasDone();
     }
 
+    public void IncreaseSpeed()
+    {
+        playerController.SetSpeed(playerController.GetSpeed() * 1.2f);
+        HasDone();
+    }
+
     private void HasDone()
     {
         UIController.instance.DeactivatePowerUpPanel();

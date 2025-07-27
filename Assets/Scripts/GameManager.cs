@@ -21,12 +21,20 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private float worldSpeed;
+    [SerializeField] private float increaseWorldSpeedMark;
+    [SerializeField] private float timer = 0f;
 
     private void Update()
     {
         // Pause and unpause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
             GameManager.instance.PauseGame(true);
+        timer += Time.deltaTime;
+        if (timer >= increaseWorldSpeedMark)
+        {
+            timer = 0f;
+            worldSpeed *= 1.05f;
+        }
     }
 
     public void SetGameOver()

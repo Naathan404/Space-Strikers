@@ -22,6 +22,7 @@ public class WaveController : MonoBehaviour
     private void Start()
     {
         playerController = FindAnyObjectByType<PlayerController>();
+        waveIndex = Random.Range(0, waves.Count);
     }
 
     private void Update()
@@ -36,11 +37,7 @@ public class WaveController : MonoBehaviour
         if (waves[waveIndex].objectCount >= waves[waveIndex].objectPerWave)
         {
             waves[waveIndex].objectCount = 0;
-            waveIndex++;
-            if (waveIndex >= waves.Count)
-            {
-                waveIndex = 0;
-            }
+            waveIndex = Random.Range(0, waves.Count);
         }
     }
 

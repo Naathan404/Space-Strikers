@@ -13,5 +13,5 @@ public class BaseGun : MonoBehaviour
     public float GetBulletSize() => bulletSize;
     public void SetBulletSize(float value) { bulletSize = value; }
     public float GetCoolDown() => coolDown;
-    public void SetCoolDown(float value) { coolDown = value; }
+    public void SetCoolDown(float value) { coolDown = Mathf.Clamp(value, 0.15f, 0.5f); }
 }

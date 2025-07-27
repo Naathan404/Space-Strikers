@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         // Generate level system
         for (int i = expToNextLevels.Count; i < maxLevel; i++)
         {
-            expToNextLevels.Add(Mathf.CeilToInt(expToNextLevels[expToNextLevels.Count - 1] * 1.2f + 7));
+            expToNextLevels.Add(Mathf.CeilToInt(expToNextLevels[expToNextLevels.Count - 1] * 1.5f));
         }
     }
 
@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
         currentExp -= expToNextLevels[currentLevel];
         currentLevel++;
         AudioManager.instance.PlaySound(AudioManager.instance._levelUp);
-        if(!GameManager.instance.IsGameOVer())
+        if (!GameManager.instance.IsGameOVer())
             UIController.instance.ActivatePowerUpPanel();
     }
 
@@ -200,4 +200,7 @@ public class PlayerController : MonoBehaviour
 
     public int GetCurrentExp() => currentExp;
     public int GetMaxExp() => expToNextLevels[currentLevel];
+    public int GetCurrentLevel() => currentLevel + 1;
+    public float GetSpeed() => moveSpeed;
+    public void SetSpeed(float val) { moveSpeed = val; }
 }
