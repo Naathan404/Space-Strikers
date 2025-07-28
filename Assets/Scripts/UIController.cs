@@ -1,10 +1,11 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private GameObject playingPanel; 
+    [SerializeField] private GameObject playingPanel;
     [Header("Score Variables")]
     [SerializeField] private TMP_Text scoreText;
     [Header("Energy Bar")]
@@ -34,6 +35,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text highScore;
     [Header("LevelUpPanel")]
     [SerializeField] private GameObject levelUpPanel;
+    [Header("Tutorial Panel ")]
+    [SerializeField] private GameObject tutoPanel;
 
     private PlayerController playerController;
     public static UIController instance;
@@ -43,6 +46,16 @@ public class UIController : MonoBehaviour
             Destroy(gameObject);
         else
             instance = this;
+        if (PlayerPrefs.GetInt("FirstTimeToPlay", 0) == 0)
+        {
+            PlayerPrefs.SetInt("FirstTimeToPlay", 1);
+            tutoPanel.SetActive(true);
+            StartCoroutine(DeactivateTutoPanel());
+        }
+        else
+        {
+            tutoPanel.SetActive(false);
+        }
     }
 
     private void Start()
@@ -109,5 +122,11 @@ public class UIController : MonoBehaviour
     {
         levelUpPanel.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    IEnumerator DeactivateTutoPanel()
+    {
+        yield return new WaitForSeconds(2.5f);
+        tutoPanel.SetActive(false);
     }
 }

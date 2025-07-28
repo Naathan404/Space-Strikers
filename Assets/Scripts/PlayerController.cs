@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth = currentHealth - amount >= 0 ? currentHealth - amount : 0;
         FlashEffect.instance.CallFlashEffect(spriteRenderer);
-
+        UIController.instance.DisplayHealthBar();
         AudioManager.instance.PlayAdjustedSound(AudioManager.instance._playerHit);
     }
 
