@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] private GameObject playingPanel; 
+    [Header("Score Variables")]
+    [SerializeField] private TMP_Text scoreText;
     [Header("Energy Bar")]
     [SerializeField] private Slider energyBar;
     [SerializeField] private Image energyFillArea;
@@ -27,6 +30,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject pauseGamePanel;
     [Header("Game Over Panel")]
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TMP_Text yourScore;
+    [SerializeField] private TMP_Text highScore;
     [Header("LevelUpPanel")]
     [SerializeField] private GameObject levelUpPanel;
 
@@ -77,6 +82,11 @@ public class UIController : MonoBehaviour
         expBar.value = curExpVal;
     }
 
+    public void DisplayScore(float score)
+    {
+        scoreText.text = GameManager.instance.GetScore().ToString("0.0");
+    }
+
     public void ActivatePausePanel(bool active)
     {
         pauseGamePanel.SetActive(active);
@@ -85,6 +95,9 @@ public class UIController : MonoBehaviour
     public void ActivateGameOverPanel(bool active)
     {
         gameOverPanel.SetActive(active);
+        yourScore.text = "You've traveled: " + GameManager.instance.GetScore().ToString("0.0") + " lys";
+        highScore.text = "Best: " + PlayerPrefs.GetFloat("HighScore", 0f).ToString("0.0");
+        playingPanel.SetActive(!active);
     }
 
     public void ActivatePowerUpPanel()

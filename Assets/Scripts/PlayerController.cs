@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private float baseBoostPower = 1f;
     private float boost;
     private float dirX, dirY;
+    public bool isLevelUp = false;
 
     // Define components
     private Rigidbody2D playerRigidbody2D;
@@ -178,6 +179,7 @@ public class PlayerController : MonoBehaviour
 
     private void LevelUp()
     {
+        isLevelUp = true;
         currentExp -= expToNextLevels[currentLevel];
         currentLevel++;
         AudioManager.instance.PlaySound(AudioManager.instance._levelUp);

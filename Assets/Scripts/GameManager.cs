@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     private bool isGamePaused = false;
     private bool isGameOver = false;
+    private float score = 0;
+    private float highScore;
 
     private void Awake()
     {
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         playerController = FindAnyObjectByType<PlayerController>();
+        highScore = PlayerPrefs.GetFloat("HighScore", 0f);
     }
 
     [SerializeField] private float worldSpeed;
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isGameOver || playerController.isLevelUp) return;
         // Pause and unpause
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
             GameManager.instance.PauseGame(true);
@@ -35,6 +39,12 @@ public class GameManager : MonoBehaviour
             timer = 0f;
             worldSpeed *= 1.05f;
         }
+        score += GetWorldSpeed() / 1000f;
+        if (score > highScore)
+        {
+            PlayerPrefs.SetFloat("HighScore", score);
+        }
+        UIController.instance.DisplayScore(score);
     }
 
     public void SetGameOver()
@@ -45,11 +55,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOver()
     {
-        float timer = 0f;
-        while (timer < 1.5f)
+        float gtimer = 0f;
+        while (gtimer < 1.5f)
         {
-            timer += Time.deltaTime;
-            Time.timeScale = Mathf.Lerp(1f, 0.5f, timer / 1.5f);
+            gtimer += Time.deltaTime;
+            Time.timeScale = Mathf.Lerp(1f, 0.5f, gtimer / 1.5f);
             yield return null;
         }
         Time.timeScale = 0f;
@@ -85,5 +95,6 @@ public class GameManager : MonoBehaviour
     public float GetWorldSpeed() => worldSpeed * playerController.GetBoost();
     public bool IsPaused() => isGamePaused;
     public bool IsGameOVer() => isGameOver;
+    public float GetScore() => score;
     public Vector3 GetPlayerPosition() => playerController.transform.position;
 }

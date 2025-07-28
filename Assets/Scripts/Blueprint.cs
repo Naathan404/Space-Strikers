@@ -55,5 +55,6 @@ public class Blueprint : MonoBehaviour
     private void HasDone()
     {
         UIController.instance.DeactivatePowerUpPanel();
+        playerController.isLevelUp = false;
     }
 }

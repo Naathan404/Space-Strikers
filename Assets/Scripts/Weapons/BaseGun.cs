@@ -5,7 +5,7 @@ public class BaseGun : MonoBehaviour
     [Header("Gun Variables")]
     [SerializeField] protected int amountOfBullet;
     protected float baseRange = 0.2f;
-    [SerializeField] protected float bulletSize = 1f;
+    [SerializeField] protected float bulletSize = 0.5f;
     [SerializeField] protected float coolDown;
 
     public int GetAmountOfBullets() => amountOfBullet;

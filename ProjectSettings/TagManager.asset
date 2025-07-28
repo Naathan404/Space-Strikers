@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Bullet
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Obstacle
   - Bullet
   - Expoid
-  - 
+  - Ship
   - 
   - 
   - 

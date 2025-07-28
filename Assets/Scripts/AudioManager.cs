@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip _hitBullet;
     public AudioClip _hit3;
     public AudioClip _hit4;
+    public AudioClip _enemyFire;
 
     private void OnEnable()
     {
